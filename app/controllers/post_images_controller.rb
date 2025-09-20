@@ -16,7 +16,8 @@ class PostImagesController < ApplicationController
   end
 
   def index
-    @post_images = PostImage.all
+    # after add kaminari, pagination (add page)
+    @post_images = PostImage.page(params[:page])
   end
 
   # need to find post from id

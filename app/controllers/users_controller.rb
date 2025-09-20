@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
-    @post_images = @user.post_images
+    # after add kaminari, pagination (add page)
+    @post_images = PostImage.page(params[:page])
   end
 
   # pull user from id in URL (/users/xxx/edit)
