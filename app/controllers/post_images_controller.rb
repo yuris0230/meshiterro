@@ -4,11 +4,15 @@ class PostImagesController < ApplicationController
   end
 
   # 投稿データの保存
+  # add varlidation, if not > render new
   def create
     @post_image = PostImage.new(post_image_params)
     @post_image.user_id = current_user.id
-    @post_image.save
-    redirect_to post_images_path
+    if @post_image.save
+      redirect_to post_images_path
+    else
+      render :new
+    end
   end
 
   def index

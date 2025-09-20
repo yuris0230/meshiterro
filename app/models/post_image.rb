@@ -4,6 +4,10 @@ class PostImage < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  # create validation
+  validates :shop_name, presence: true # need shop name
+  validates :image, presence: true # need image
+
   def get_image
     unless image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')
